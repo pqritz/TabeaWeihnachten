@@ -30,7 +30,7 @@ const imageUrls = [
     "assets/bunnyHeart3.png",
     "assets/bunnyHeart4.png"
 ]
-const DOWNLOADBUNNY = "assets/bunny.png";
+const DOWNLOADBUNNY = "assets/Bunny.png";
 
 function addRandomImage() {
     let randomImage;
@@ -53,12 +53,15 @@ function addRandomImage() {
     setTimeout(() => {
         img.classList.add('visible');
     }, 1000); // Small delay to ensure the image is added first
-    if(isMobile()) {
-        img.addEventListener("click", downloadFile("", "DesktopPet.jar"))
+    if(!isMobile()) {
+        img.addEventListener("click", function() {
+            downloadFile("https://github.com/pqritz/TabeaWeihnachten/raw/refs/heads/main/assets/DesktopPet.jar", "DesktopPet.jar")
+        });
     }
 }
 
 function downloadFile(url, fileName) {
+    console.log("CALLED");
     const anchor = document.createElement('a');
     
     anchor.href = url;
