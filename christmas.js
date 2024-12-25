@@ -28,11 +28,18 @@ const imageUrls = [
     "assets/bunnyHeart1.png",
     "assets/bunnyHeart2.png",
     "assets/bunnyHeart3.png",
-    "assets/bunnyHeart4.png",
+    "assets/bunnyHeart4.png"
 ]
+const DOWNLOADBUNNY = "assets/bunny.png";
 
 function addRandomImage() {
-    const randomImage = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+    let randomImage;
+    if(isMobile()) {
+        randomImage = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+    } else {
+        randomImage = DOWNLOADBUNNY;
+    }
+
     const existingImage = document.querySelector('BunnyImage');
     if(existingImage) {
         existingImage.remove();
@@ -46,6 +53,24 @@ function addRandomImage() {
     setTimeout(() => {
         img.classList.add('visible');
     }, 1000); // Small delay to ensure the image is added first
+    if(isMobile()) {
+        img.addEventListener("click", downloadFile("", "DesktopPet.jar"))
+    }
+}
+
+function downloadFile(url, fileName) {
+    const anchor = document.createElement('a');
+    
+    anchor.href = url;
+    anchor.download = fileName;
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+}
+
+function isMobile() {
+    const userAgent = navigator.userAgent.toLowerCase();
+    return /iphone|ipod|android|blackberry|windows phone/i.test(userAgent);
 }
 
 
