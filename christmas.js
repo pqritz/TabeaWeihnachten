@@ -55,7 +55,7 @@ function addRandomImage() {
     }, 1000); // Small delay to ensure the image is added first
     if(!isMobile()) {
         img.addEventListener("click", function() {
-            downloadFile("https://github.com/pqritz/TabeaWeihnachten/raw/refs/heads/main/assets/DesktopPet.jar", "DesktopPet.jar")
+            downloadFile("https://github.com/pqritz/TabeaWeihnachten/raw/refs/heads/main/assets/DesktopPetGames.jar", "DesktopPetGames.jar")
         });
     }
 }
